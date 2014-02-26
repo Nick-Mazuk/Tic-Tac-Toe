@@ -1,145 +1,139 @@
 //tests if board is valid************************************
 var test = function(board) {
-if(Math.sqrt(board.length) != Math.round(Math.sqrt(board.length))) {
-    return "This is not a valid board.";
-} else {
+    if(Math.sqrt(board.length) != Math.round(Math.sqrt(board.length))) {
+        return "This is not a valid board.";
+    } else {
+        
+    //tests if board has no length*******************************
     
-//tests if board has no length*******************************
-
-if(board.length===0) {
-    return "There is no winner.";
-}
-
-//For a length of 1 *****************************************
-
-if(board.length===1) {
-    if(board[0]===0) {
+    if(board.length===0) {
         return "There is no winner.";
-    }else {
-        return board[0] + " wins!";
-}
-
-if(board.length>1) {
-
-//Tests the first diagonal***********************************
-
-var size = Math.sqrt(board.length);
-var diagonal = 0;
-var winner = true;
-
-if(board[0]!==0) {
-while(diagonal<board.length-1 && winner === true) {
-    
-    if(board[diagonal]!==board[diagonal+size+1]) {
-        winner=false;
     }
     
-    diagonal = diagonal + size + 1;
-}
-} else {
-    winner = false;
-}
-
-if(winner) {
-    return board[0] + " wins!";
-} else {
-
-//Tests the second diagonal**********************************
-
-diagonal = size - 1;
-winner = true;
-
-if(board[diagonal]!==0) {
-while(diagonal<Math.pow(size,2)-size-1 && winner === true) {
+    //For a length of 1 *****************************************
     
-    if(board[diagonal]!==board[diagonal+size]) {
-        winner=false;
+    if(board.length===1) {
+        if(board[0]===0) {
+            return "There is no winner.";
+        }else {
+            return board[0] + " wins!";
     }
     
-    diagonal = diagonal + size;
-}
-} else {
-    winner = false;
-}
-
-if(winner) {
-        return board[size-1] + " wins!"; 
-} else {
-
-//Tests the horizontals**************************************
-
-var horizontal = 0;
-winner = true;
-var row = 0;
-
-while(row<size && winner === true) {
-    
-    for(i=0; i<size-1; i++) {
-        if(board[horizontal]!==board[horizontal+1]) {
-            winner=false;
+    if(board.length>1) {
+        
+        //Tests the first diagonal***********************************
+        
+        var size = Math.sqrt(board.length);
+        var diagonal = 0;
+        var winner = true;
+        
+        if(board[0]!==0) {
+            while(diagonal<board.length-1 && winner === true) {
+                
+                if(board[diagonal]!==board[diagonal+size+1]) {
+                    winner=false;
+                }
+                
+                diagonal = diagonal + size + 1;
+            }
+        } else {
+            winner = false;
         }
-        horizontal = horizontal + 1;
-    }
-    
-    if(winner===true) {
-        if(board[horizontal]!==0) {
-            return board[horizontal] + " wins!";
+        
+        if(winner) {
+            return board[0] + " wins!";
+        } else {
+        
+            //Tests the second diagonal**********************************
+            
+            diagonal = size - 1;
+            winner = true;
+            
+            if(board[diagonal]!==0) {
+                while(diagonal<Math.pow(size,2)-size-1 && winner === true) {
+                    
+                    if(board[diagonal]!==board[diagonal+size]) {
+                        winner=false;
+                    }
+                    
+                    diagonal = diagonal + size;
+                }
+            } else {
+                winner = false;
+            }
+            
+            if(winner) {
+                    return board[size-1] + " wins!"; 
+            } else {
+            
+                //Tests the horizontals**************************************
+                
+                var horizontal = 0;
+                winner = true;
+                var row = 0;
+                
+                while(row<size && winner === true) {
+                    
+                    for(i=0; i<size-1; i++) {
+                        if(board[horizontal]!==board[horizontal+1]) {
+                            winner=false;
+                        }
+                        horizontal = horizontal + 1;
+                    }
+                    
+                    if(winner===true) {
+                        if(board[horizontal]!==0) {
+                            return board[horizontal] + " wins!";
+                        }
+                    } else {
+                        winner = true;
+                    }
+                    row=row + 1;
+                    horizontal = row*size;
+                
+                }
+                
+                //test for the verticals*************************************
+                
+                if(row===size && winner===true) {
+                    
+                    var vertical = 0;
+                    winner = true;
+                    var column = 0;
+                    
+                    while(column<size-1 && winner === true) {
+                        
+                        for(i=0; i<size; i = i + size) {
+                            if(board[vertical]!==board[vertical+size]) {
+                                winner=false;
+                            }
+                            vertical = vertical + size;
+                        }
+                        
+                        if(winner===true) {
+                            if(board[vertical]!==0) {
+                                return board[vertical] + " wins!";
+                            }
+                        } else {
+                            winner = true;
+                        }
+                        column=column + 1;
+                        vertical = column;
+                    
+                    }
+            
+                        //If there really was no winner******************************
+                            if(column===size-1 && winner===true) {
+                                return "There is no winner.";
+                            }
+                        }
+                    }
+                }
+            }
         }
-    } else {
-        winner = true;
     }
-    row=row + 1;
-    horizontal = row*size;
-
-}
-
-//test for the verticals*************************************
-
-if(row===size && winner===true) {
-    
-var vertical = 0;
-winner = true;
-var column = 0;
-
-while(column<size-1 && winner === true) {
-    
-    for(i=0; i<size; i = i + size) {
-        if(board[vertical]!==board[vertical+size]) {
-            winner=false;
-        }
-        vertical = vertical + size;
-    }
-    
-    if(winner===true) {
-        if(board[vertical]!==0) {
-            return board[vertical] + " wins!";
-        }
-    } else {
-        winner = true;
-    }
-    column=column + 1;
-    vertical = column;
-
-}
-
-//If there really was no winner******************************
-if(column===size-1 && winner===true) {
-    return "There is no winner.";
-}
-}
-}
-}
-}
-}
-}
 };
 
 console.time("Time taken");
 test([1,2]);
 console.timeEnd("Time taken");
-
-var thingy = function() {
-
-};
-
-thingy();
