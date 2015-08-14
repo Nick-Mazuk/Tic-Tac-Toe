@@ -1,0 +1,40 @@
+html {
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+	text-align: center;
+}
+
+td {
+	width:100px;
+	height:100px;
+	border:1px solid black;
+	font-size:73px;
+	text-align: center;
+}
+
+#a3,#b3,#c3 {
+	border-top: none;
+}
+
+#a1,#a2,#a3 {
+	border-left: none;
+}
+
+#a1,#b1,#c1 {
+	border-bottom: none;
+}
+
+#c1,#c2,#c3 {
+	border-right:none;
+}
+
+table {
+	border-collapse: collapse;
+	margin:0 auto;
+}
+
+#winner {
+	text-align: center;
+}
